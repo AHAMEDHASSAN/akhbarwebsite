@@ -12,8 +12,8 @@ export function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <header className="bg-white py-4 md:py-6 relative border-b border-gray-100">
-      <div className="max-w-[1450px] mx-auto px-4 flex items-center justify-between h-20 md:h-32 relative">
+    <header className="bg-white py-2 md:py-6 relative border-b border-gray-100 sticky top-0 z-50">
+      <div className="max-w-[1450px] mx-auto px-4 flex items-center justify-between h-14 md:h-32 relative">
         
         {/* Mobile: Hamburger Menu (Right side in RTL) */}
         <div className="flex md:hidden items-center z-10">
@@ -21,7 +21,7 @@ export function Header() {
             onClick={() => setIsSideMenuOpen(true)}
             className="text-gray-800 hover:text-green-700"
           >
-            <Menu className="w-9 h-9 stroke-[2.5]" />
+            <Menu className="w-7 h-7 stroke-[2]" />
           </button>
         </div>
 
@@ -31,9 +31,9 @@ export function Header() {
             <Image
               src="/LogoNewUbdate2 .png"
               alt="أخبار السعودية"
-              width={450}
-              height={200}
-              className="h-20 md:h-32 w-auto object-contain"
+              width={350}
+              height={150}
+              className="h-14 md:h-32 w-auto object-contain"
               priority
               quality={100}
             />
@@ -46,7 +46,7 @@ export function Header() {
             onClick={() => setIsSearchOpen(true)}
             className="text-gray-800 hover:text-green-700"
           >
-            <Search className="w-8 h-8 stroke-[3]" />
+            <Search className="w-6 h-6 stroke-[2]" />
           </button>
         </div>
 

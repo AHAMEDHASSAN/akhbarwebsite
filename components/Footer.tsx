@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="bg-[#111111] text-white pt-16 pb-0 mt-12 font-[family-name:var(--font-cairo)]">
       <div className="container mx-auto px-4 flex flex-col items-center">
-        <div className="mb-8 flex items-center justify-center">
+        {/* <div className="mb-8 flex items-center justify-center">
              <Image
                 src="/LogoNewUbdate2 .png"
                 alt="أخبار السعودية"
@@ -15,7 +15,7 @@ export function Footer() {
                 className="h-24 md:h-32 w-auto object-contain"
                 quality={100}
              />
-        </div>
+        </div> */}
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-8">
@@ -39,7 +39,7 @@ export function Footer() {
       {/* Copyright Bottom Bar */}
       <div className="bg-black py-6 text-center border-t border-[#222]">
         <p className="text-gray-300 text-sm dir-rtl font-bold font-size-2xl">
-         جميع الحقوق محفوظه ل <span className="text-green-500 font-bold text-2xl">Jikarnow</span>
+         جميع الحقوق محفوظه ل <span className="text-green-500 font-bold " style={{fontSize: '18px'}}>Jikarnow</span>
         </p>
       </div>
     </footer>

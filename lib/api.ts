@@ -28,11 +28,15 @@ const CATEGORY_IDS: Record<string, number> = {
 
 export async function getArticlesByCategory(category: string): Promise<Article[]> {
   try {
-    const categoryId = CATEGORY_IDS[category.toLowerCase()] || 200;
+    const categoryLower = category.toLowerCase();
+    const categoryId = categoryLower === "" || categoryLower === "all" || categoryLower === "latest" 
+      ? null 
+      : (CATEGORY_IDS[categoryLower] || 200);
     
     // Fetch posts with optimized fields
+    const queryParams = categoryId ? `categories=${categoryId}&` : "";
     const fields = "id,date,slug,title,content,excerpt,link,categories,_links";
-    const res = await fetch(`${API_BASE}?categories=${categoryId}&_embed&per_page=15&_fields=${fields}`, {
+    const res = await fetch(`${API_BASE}?${queryParams}_embed&per_page=25&_fields=${fields}`, {
       next: { revalidate: 600 }, // caching for 10 minutes
       headers: {
         "User-Agent": "Mozilla/5.0 (Compatible; NextJS News App)"
