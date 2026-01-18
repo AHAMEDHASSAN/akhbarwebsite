@@ -62,7 +62,7 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
           
           <div className="flex-1 flex justify-center">
              <Image 
-               src="/Logo.png" 
+               src="/LogoNew.png" 
                alt="Logo" 
                width={250} 
                height={120} 

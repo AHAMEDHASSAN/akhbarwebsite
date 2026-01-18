@@ -8,7 +8,7 @@ export function Footer() {
       <div className="container mx-auto px-4 flex flex-col items-center">
         <div className="mb-8">
              <Image
-                src="/Logo.png"
+                src="/LogoNew.png"
                 alt="أخبار السعودية"
                 width={300}
                 height={130}
