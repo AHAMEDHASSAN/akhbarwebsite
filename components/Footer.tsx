@@ -18,12 +18,12 @@ export function Footer() {
         </div>
 
         {/* Social Links */}
-        <div className="flex gap-4 mb-8">
-          <Link href="#" className="w-12 h-12 rounded-full bg-[#222] flex items-center justify-center hover:bg-pink-600 transition-colors border border-[#333]">
-            <Instagram className="w-6 h-6 text-white" />
+        <div className="flex justify-center gap-6 mb-8">
+          <Link href="https://instagram.com/saudinews50" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#222] text-white hover:bg-pink-600 transition-colors">
+            <Instagram className="w-6 h-6" />
           </Link>
-          <Link href="#" className="w-12 h-12 rounded-full bg-[#222] flex items-center justify-center hover:bg-[#1DA1F2] transition-colors border border-[#333]">
-            <Twitter className="w-6 h-6 text-white" />
+          <Link href="https://twitter.com/saudinews50" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#222] text-white hover:bg-[#1DA1F2] transition-colors">
+            <Twitter className="w-6 h-6" />
           </Link>
         </div>
 
@@ -31,7 +31,7 @@ export function Footer() {
         <div className="flex flex-wrap justify-center gap-8 mb-12 text-base text-gray-400 font-medium">
             <Link href="#" className="hover:text-white transition-colors">آخر الأخبار</Link>
             <Link href="#" className="hover:text-white transition-colors">من نحن</Link>
-            <Link href="#" className="hover:text-white transition-colors">اتصل بنا</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">اتصل بنا</Link>
             <Link href="#" className="hover:text-white transition-colors">سياسة الخصوصية</Link>
         </div>
       </div>

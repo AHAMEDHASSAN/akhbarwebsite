@@ -1,6 +1,9 @@
 export interface Article {
   title: string;
   description: string;
+  content?: string;
+  slug: string;
+  categoryId: number;
   url: string;
   urlToImage: string | null;
   publishedAt: string;
@@ -27,8 +30,9 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
   try {
     const categoryId = CATEGORY_IDS[category.toLowerCase()] || 200;
     
-    // Fetch posts with _embed to get images
-    const res = await fetch(`${API_BASE}?categories=${categoryId}&_embed&per_page=15`, {
+    // Fetch posts with optimized fields
+    const fields = "id,date,slug,title,content,excerpt,link,categories,_links";
+    const res = await fetch(`${API_BASE}?categories=${categoryId}&_embed&per_page=15&_fields=${fields}`, {
       next: { revalidate: 600 }, // caching for 10 minutes
       headers: {
         "User-Agent": "Mozilla/5.0 (Compatible; NextJS News App)"
@@ -56,6 +60,9 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
       return {
         title: post.title?.rendered || "بدون عنوان",
         description: cleanExcerpt,
+        content: post.content?.rendered || "",
+        slug: post.slug,
+        categoryId: categoryId,
         url: post.link,
         urlToImage: imageUrl,
         publishedAt: post.date,
@@ -68,5 +75,47 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
   } catch (error) {
     console.error("API Fetch Error:", error);
     return [];
+  }
+}
+
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  try {
+    const fields = "id,date,slug,title,content,excerpt,link,categories,_links";
+    const res = await fetch(`${API_BASE}?slug=${slug}&_embed&_fields=${fields}`, {
+      next: { revalidate: 600 },
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Compatible; NextJS News App)"
+      }
+    });
+
+    if (!res.ok) return null;
+
+    const posts = await res.json();
+    if (!posts || posts.length === 0) return null;
+
+    const post = posts[0];
+
+    // Extract image
+    let imageUrl = null;
+    if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
+      imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
+    }
+
+    return {
+      title: post.title?.rendered || "بدون عنوان",
+      description: post.excerpt?.rendered?.replace(/<[^>]*>/g, "") || "",
+      content: post.content?.rendered || "",
+      slug: post.slug,
+      categoryId: post.categories ? post.categories[0] : 200,
+      url: post.link,
+      urlToImage: imageUrl,
+      publishedAt: post.date,
+      source: {
+        name: "أخبار السعودية"
+      }
+    };
+  } catch (error) {
+    console.error("API Fetch Error:", error);
+    return null;
   }
 }

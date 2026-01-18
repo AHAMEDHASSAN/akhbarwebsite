@@ -6,6 +6,7 @@ export default async function Home() {
 
   const formattedArticles = articles.map((article, index) => ({
     id: index.toString(),
+    slug: article.slug,
     title: article.title,
     summary: article.description,
     category: "أخبار المحلية", // Default for home/general

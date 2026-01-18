@@ -24,6 +24,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   // Map API articles to our NewsCard format
   const formattedArticles = articles.map((article, index) => ({
     id: index.toString(),
+    slug: article.slug,
     title: article.title,
     summary: article.description || "...",
     category: displayCategoryName,

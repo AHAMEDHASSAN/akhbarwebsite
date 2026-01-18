@@ -52,10 +52,10 @@ export function Header() {
 
         {/* Desktop Right Side (Social Icons) */}
         <div className="hidden md:flex items-center gap-4">
-          <Link href="#" className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white hover:bg-pink-600 transition-colors">
+          <Link href="https://instagram.com/saudinews50" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white hover:bg-pink-600 transition-colors">
             <Instagram className="w-6 h-6" />
           </Link>
-          <Link href="#" className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white hover:bg-[#1DA1F2] transition-colors">
+          <Link href="https://twitter.com/saudinews50" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white hover:bg-[#1DA1F2] transition-colors">
             <Twitter className="w-6 h-6" />
           </Link>
         </div>

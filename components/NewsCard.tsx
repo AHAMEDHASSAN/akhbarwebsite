@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 interface NewsCardProps {
   article: {
     id: string;
+    slug: string;
     title: string;
     summary: string;
     category: string;
@@ -19,11 +21,12 @@ export function NewsCard({ article }: NewsCardProps) {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="flex flex-row gap-6 py-4 bg-white border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors group items-start">
+    <Link 
+      href={`/article/${article.slug}`}
+      className="flex flex-row gap-6 py-4 bg-white border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-all group items-start"
+    >
       
-      {/* Image (Left in Arabic/RTL) 
-          Target: Wide rectangle, e.g., 400x225 (16:9)
-      */}
+      {/* Image (Left in Arabic/RTL) */}
       <div className="w-[140px] h-[90px] md:w-[550px] md:h-[310px] relative rounded-lg overflow-hidden flex-shrink-0 bg-gray-100 border border-gray-200 shadow-sm">
         {!imageError && article.image ? (
           <Image
@@ -46,7 +49,10 @@ export function NewsCard({ article }: NewsCardProps) {
         
         {/* Meta Row: Category / Time */}
         <div className="flex items-center gap-2 mb-3 text-xs md:text-sm text-gray-500 font-medium">
-          <span className="text-gray-900 font-bold">{article.category || "أخبار"}</span>
+          {/* Slanted Category Badge */}
+          <div className="relative inline-block bg-[#28642E] text-white px-2 py-0.5 font-bold text-[10px] md:text-[12px] transform -skew-x-[15deg]">
+            <span className="inline-block transform skew-x-[15deg]">{article.category || "المحلية"}</span>
+          </div>
           <span className="text-gray-400">/</span>
           <span dir="rtl">{article.date || "منذ ساعة"}</span>
         </div>
@@ -62,6 +68,6 @@ export function NewsCard({ article }: NewsCardProps) {
         </p>
 
       </div>
-    </div>
+    </Link>
   );
 }

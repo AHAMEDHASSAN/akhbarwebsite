@@ -43,8 +43,7 @@ export function MegaMenu({ category, isVisible }: MegaMenuProps) {
             {articles.map((article, idx) => (
               <Link 
                 key={idx} 
-                href={article.url} // In real app, internal link
-                target="_blank"
+                href={`/article/${article.slug}`}
                 className="group flex flex-col gap-2"
               >
                 <div className="relative aspect-video w-full overflow-hidden rounded-md bg-gray-100">

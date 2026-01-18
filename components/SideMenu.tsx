@@ -97,13 +97,13 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
         {/* Footer */}
         <div className="p-8 border-t border-gray-100">
           <p className="text-center text-xs text-gray-400 mb-4 font-bold tracking-widest">CONNECT WITH US</p>
-          <div className="flex justify-center gap-4">
-             <Link href="#" className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white hover:bg-pink-600 transition-colors">
-                <Instagram className="w-6 h-6" />
-             </Link>
-             <Link href="#" className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white hover:bg-[#1DA1F2] transition-colors">
-                <Twitter className="w-6 h-6" />
-             </Link>
+          <div className="flex items-center gap-4 py-8 px-8 border-b border-gray-100">
+            <Link href="https://instagram.com/saudinews50" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors">
+              <Instagram className="w-5 h-5" />
+            </Link>
+            <Link href="https://twitter.com/saudinews50" target="_blank" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center hover:bg-[#1DA1F2] hover:text-white transition-colors">
+              <Twitter className="w-5 h-5" />
+            </Link>
           </div>
         </div>
 
