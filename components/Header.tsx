@@ -26,14 +26,14 @@ export function Header() {
         </div>
 
         {/* Logo (Centered) */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
           <Link href="/">
             <Image
-              src="/LogoNew.png"
+              src="/LogoNewUbdate2 .png"
               alt="أخبار السعودية"
               width={450}
               height={200}
-              className="h-20 md:h-36 w-auto object-contain"
+              className="h-20 md:h-32 w-auto object-contain"
               priority
               quality={100}
             />

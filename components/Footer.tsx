@@ -6,13 +6,13 @@ export function Footer() {
   return (
     <footer className="bg-[#111111] text-white pt-16 pb-0 mt-12 font-[family-name:var(--font-cairo)]">
       <div className="container mx-auto px-4 flex flex-col items-center">
-        <div className="mb-8">
+        <div className="mb-8 flex items-center justify-center">
              <Image
-                src="/LogoNew.png"
+                src="/LogoNewUbdate2 .png"
                 alt="أخبار السعودية"
-                width={300}
-                height={130}
-                className="h-32 w-auto object-contain"
+                width={450}
+                height={200}
+                className="h-24 md:h-32 w-auto object-contain"
                 quality={100}
              />
         </div>
@@ -38,8 +38,8 @@ export function Footer() {
 
       {/* Copyright Bottom Bar */}
       <div className="bg-black py-6 text-center border-t border-[#222]">
-        <p className="text-gray-500 text-sm dir-rtl">
-          جميع الحقوق محفوظة لدى أخبار السعودية © 2022 .
+        <p className="text-gray-300 text-sm dir-rtl font-bold font-size-2xl">
+         جميع الحقوق محفوظه ل <span className="text-green-500 font-bold text-2xl">Jikarnow</span>
         </p>
       </div>
     </footer>
