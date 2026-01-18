@@ -5,6 +5,7 @@ import { NewsCard } from "./NewsCard";
 
 interface ArticleProps {
   id: string;
+  slug: string;
   title: string;
   summary: string;
   category: string;
