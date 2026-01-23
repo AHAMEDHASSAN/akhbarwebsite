@@ -1,22 +1,10 @@
 import { Instagram, Twitter } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
   return (
     <footer className="bg-[#111111] text-white pt-16 pb-0 mt-12 font-[family-name:var(--font-cairo)]">
-      <div className="container mx-auto px-4 flex flex-col items-center">
-        {/* <div className="mb-8 flex items-center justify-center">
-             <Image
-                src="/LogoNewUbdate2 .png"
-                alt="أخبار السعودية"
-                width={450}
-                height={200}
-                className="h-24 md:h-32 w-auto object-contain"
-                quality={100}
-             />
-        </div> */}
-
+      <div className="max-w-[1450px] mx-auto px-6 sm:px-12 md:px-20 lg:px-32 flex flex-col items-center">
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-8">
           <Link href="https://instagram.com/saudinews50" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full bg-[#222] text-white hover:bg-pink-600 transition-colors">

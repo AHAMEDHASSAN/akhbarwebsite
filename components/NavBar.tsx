@@ -28,7 +28,7 @@ export function NavBar() {
         className="bg-white sticky top-0 z-50 hidden md:block border-y border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)]"
         onMouseLeave={() => setHoveredCategory(null)}
       >
-        <div className="max-w-[1450px] mx-auto px-4">
+        <div className="max-w-[1450px] mx-auto px-6 sm:px-12 md:px-20 lg:px-32">
           <div className="flex items-center justify-between py-4">
             
             {/* Right Side: Hamburger Menu */}

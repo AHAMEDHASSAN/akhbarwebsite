@@ -22,8 +22,17 @@ interface CategorySectionProps {
   layout?: "grid" | "row";
 }
 
+const FALLBACK_IMAGES: Record<string, string> = {
+  "الرياضة": "https://images.unsplash.com/photo-1579952363873-27f3bde9be2b?auto=format&fit=crop&w=800&q=80",
+  "السياسة": "https://images.unsplash.com/photo-1529107386312-7a42f0586e6e?auto=format&fit=crop&w=800&q=80",
+  "تكنولوجيا": "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
+  "ثقافة وفن": "https://images.unsplash.com/photo-1514525253440-b393452e8d26?auto=format&fit=crop&w=800&q=80",
+};
+
 export function CategorySection({ title, href, articles, layout = "grid" }: CategorySectionProps) {
   const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const fallbackSrc = FALLBACK_IMAGES[title] || "https://placehold.co/600x400/28642E/FFF?text=News50";
 
   if (articles.length === 0) return null;
 
@@ -46,7 +55,7 @@ export function CategorySection({ title, href, articles, layout = "grid" }: Cate
       {layout === "grid" ? (
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           {/* Main Featured Article */}
-          <div className="md:col-span-8 relative group overflow-hidden rounded-xl aspect-[4/3] sm:aspect-[16/9] md:aspect-auto bg-gray-100 h-[300px] sm:h-[400px] md:h-full">
+          <div className="md:col-span-8 relative group overflow-hidden rounded-xl aspect-auto bg-gray-100 h-[200px] md:h-full">
             <Link href={`/article/${articles[0].slug}`}>
               {!imgErrors[articles[0].id] && articles[0].image ? (
                 <Image
@@ -58,14 +67,20 @@ export function CategorySection({ title, href, articles, layout = "grid" }: Cate
                   onError={() => handleImageError(articles[0].id)}
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center">No Image</div>
+                  <Image
+                    src={fallbackSrc}
+                    alt={articles[0].title}
+                    fill
+                    className="object-cover opacity-80"
+                    unoptimized
+                  />
               )}
               {/* Overlay with Text */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end items-center md:items-end p-5 sm:p-6 text-center md:text-right">
                 <span className="bg-[#28642E] text-white px-2 py-0.5 text-[10px] font-bold w-fit mb-2 sm:mb-3 transform -skew-x-12">
                   <span className="inline-block transform skew-x-12">{title}</span>
                 </span>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-tight group-hover:underline line-clamp-3 w-full">
+                <h3 className="text-xl sm:text-xl md:text-2xl font-black text-white leading-tight group-hover:underline line-clamp-2 md:line-clamp-3 w-full">
                   {articles[0].title}
                 </h3>
               </div>
@@ -75,7 +90,7 @@ export function CategorySection({ title, href, articles, layout = "grid" }: Cate
           {/* Side List (3 Articles) */}
           <div className="md:col-span-4 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 md:grid-rows-3 gap-4">
             {articles.slice(1, 4).map((article) => (
-              <div key={article.id} className="relative group overflow-hidden rounded-xl aspect-[16/9] md:aspect-auto h-[180px] md:h-full min-h-[150px]">
+              <div key={article.id} className="relative group overflow-hidden rounded-xl aspect-auto h-[200px] md:h-full min-h-[150px]">
                 <Link href={`/article/${article.slug}`}>
                   {!imgErrors[article.id] && article.image ? (
                     <Image
@@ -94,7 +109,7 @@ export function CategorySection({ title, href, articles, layout = "grid" }: Cate
                     <span className="bg-[#28642E] text-white px-2 py-0.5 text-[8px] font-bold w-fit mb-1 transform -skew-x-12">
                       <span className="inline-block transform skew-x-12">{title}</span>
                     </span>
-                    <h4 className="text-[12px] sm:text-xs md:text-sm font-bold text-white leading-snug group-hover:underline line-clamp-2 w-full">
+                    <h4 className="text-sm md:text-sm font-bold text-white leading-snug group-hover:underline line-clamp-2 w-full">
                       {article.title}
                     </h4>
                   </div>
@@ -118,7 +133,15 @@ export function CategorySection({ title, href, articles, layout = "grid" }: Cate
                     onError={() => handleImageError(article.id)}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">No Image</div>
+                  <div className="w-full h-full bg-gray-200">
+                    <Image
+                      src={fallbackSrc}
+                      alt={article.title}
+                      fill
+                      className="object-cover opacity-80"
+                      unoptimized
+                    />
+                  </div>
                 )}
               </div>
               <h3 className="text-md font-bold text-gray-900 leading-tight group-hover:text-[#28642E] transition-colors text-center md:text-right line-clamp-2">

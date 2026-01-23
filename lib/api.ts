@@ -35,7 +35,8 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
     
     // Fetch posts with optimized fields
     const queryParams = categoryId ? `categories=${categoryId}&` : "";
-    const fields = "id,date,slug,title,content,excerpt,link,categories,_links";
+    // Added featured_media to ensure _embed works correctly for images
+    const fields = "id,date,slug,title,content,excerpt,link,categories,featured_media,_links";
     const res = await fetch(`${API_BASE}?${queryParams}_embed&per_page=25&_fields=${fields}`, {
       next: { revalidate: 600 }, // caching for 10 minutes
       headers: {
@@ -52,9 +53,25 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
 
     return posts.map((post: any) => {
       // Extract image
+      // Extract image with fallbacks
       let imageUrl = null;
+      
+      // 1. Try Featured Media (_embedded)
       if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
         imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
+      }
+      
+      // 2. Try Jetpack URL
+      if (!imageUrl && post.jetpack_featured_media_url) {
+        imageUrl = post.jetpack_featured_media_url;
+      }
+
+      // 3. Try parsing first image from content
+      if (!imageUrl && post.content?.rendered) {
+        const imgMatch = post.content.rendered.match(/<img[^>]+src="([^">]+)"/);
+        if (imgMatch && imgMatch[1]) {
+          imageUrl = imgMatch[1];
+        }
       }
 
       // Clean description
@@ -84,7 +101,7 @@ export async function getArticlesByCategory(category: string): Promise<Article[]
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
-    const fields = "id,date,slug,title,content,excerpt,link,categories,_links";
+    const fields = "id,date,slug,title,content,excerpt,link,categories,featured_media,_links";
     const res = await fetch(`${API_BASE}?slug=${slug}&_embed&_fields=${fields}`, {
       next: { revalidate: 600 },
       headers: {

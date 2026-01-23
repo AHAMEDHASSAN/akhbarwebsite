@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <header className="bg-white py-2 md:py-6 relative border-b border-gray-100 sticky top-0 z-50">
-      <div className="max-w-[1450px] mx-auto px-4 flex items-center justify-between h-14 md:h-32 relative">
+      <div className="max-w-[1450px] mx-auto px-6 sm:px-12 md:px-20 lg:px-32 flex items-center justify-between h-14 md:h-32 relative">
         
         {/* Mobile: Hamburger Menu (Right side in RTL) */}
         <div className="flex md:hidden items-center z-10">

@@ -51,49 +51,55 @@ export default async function Home() {
   const remainingGeneral = format(generalArticles.slice(5), "آخر الأخبار", 10);
 
   return (
-    <main className="flex-1 w-full max-w-[1450px] mx-auto px-4 py-8 overflow-x-hidden">
-      {/* 1. Hero / Top News */}
-      <HeroSection articles={heroArticles} />
-
-      <div className="space-y-16 mt-12">
-        {/* 2. Category Blocks */}
-        <CategorySection 
-          title="السياسة" 
-          href="/politics" 
-          articles={politics} 
-          layout="grid" 
-        />
-
-        <CategorySection 
-          title="الرياضة" 
-          href="/sports" 
-          articles={sports} 
-          layout="row" 
-        />
-
-        <CategorySection 
-          title="ثقافة وفن" 
-          href="/entertainment" 
-          articles={art} 
-          layout="grid" 
-        />
-
-         <CategorySection 
-          title="تكنولوجيا" 
-          href="/technology" 
-          articles={tech} 
-          layout="row" 
-        />
-
-        {/* 3. Infinite Feed Style Bottom */}
-        <section>
-          <div className="flex items-center gap-4 mb-8">
-            <h2 className="text-3xl font-black text-gray-900">آخر الأخبار</h2>
-            <div className="flex-1 h-[2px] bg-gray-100"></div>
+    <main className="flex-1 w-full max-w-[1450px] mx-auto px-6 sm:px-12 md:px-20 lg:px-32 py-8 overflow-x-hidden">
+      
+      {/* 1. Infinite Feed (Top Part) + Wrapper for other content + Load More (Bottom Part) */}
+      <section className="mb-12">
+        <div className="flex items-center justify-center mb-12 mt-4 relative">
+          <div className="absolute inset-0 flex items-center" aria-hidden="true">
+            <div className="w-full border-t-2 border-gray-400"></div>
           </div>
-          <NewsList articles={remainingGeneral} />
-        </section>
-      </div>
+          <div className="relative bg-[#28642E] text-white px-6 py-1 font-bold text-lg transform -skew-x-[15deg] shadow-md">
+            <span className="inline-block transform skew-x-[15deg]">آخر الأخبار</span>
+          </div>
+        </div>
+        
+        <NewsList articles={remainingGeneral}>
+          <div className="space-y-16 mt-16 mb-8">
+            {/* 2. Category Blocks */}
+            <CategorySection 
+              title="السياسة" 
+              href="/politics" 
+              articles={politics} 
+              layout="grid" 
+            />
+
+            <CategorySection 
+              title="الرياضة" 
+              href="/sports" 
+              articles={sports} 
+              layout="row" 
+            />
+
+            <CategorySection 
+              title="ثقافة وفن" 
+              href="/entertainment" 
+              articles={art} 
+              layout="grid" 
+            />
+
+            <CategorySection 
+              title="تكنولوجيا" 
+              href="/technology" 
+              articles={tech} 
+              layout="row" 
+            />
+
+            {/* 3. Hero / Top News (Bottom) */}
+            <HeroSection articles={heroArticles} />
+          </div>
+        </NewsList>
+      </section>
     </main>
   );
 }
